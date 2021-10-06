@@ -1,0 +1,27 @@
+.contenedor {
+    min-height: 1000px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: initial;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -1px 2px #666;
+    background: rgb(0,0,0);
+background: radial-gradient(circle, rgba(0,0,0,1) 6%, rgba(141,0,0,1) 14%, rgba(43,135,0,1) 20%, rgba(0,0,0,1) 32%, rgba(111,0,0,1) 35%, rgba(255,255,255,1) 70%, rgba(255,255,255,1) 81%, rgba(255,255,255,1) 90%);
+    /* background: rgb(194, 204, 255);
+    background: linear-gradient(90deg, rgba(194, 204, 255, 1) 0%, rgba(255, 255, 255, 1) 100%, rgba(0, 232, 255, 1) 100%); */
+    
+    position: relative;
+    top: -23px; bottom: 23px;
+}
+.table- {
+    min-height: 100px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    box-shadow: 0 -1px 2px #666;
+    background: rgb(0,0,0);
+    background: rgb(194, 204, 255);
+    background: linear-gradient(90deg, rgba(194, 204, 255, 1) 0%, rgba(255, 255, 255, 1) 100%, rgba(0, 232, 255, 1) 100%);
+}

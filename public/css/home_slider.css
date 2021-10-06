@@ -1,0 +1,21 @@
+.img-size {
+    height: 90vh !important;
+    width: 100vw !important;
+}
+
+.div-slider {
+    height: 90vh !important;
+    width: 100vw !important;
+    text-align: justify ;
+    justify-content: center;
+}
+
+.div-slider-bg {
+    background: rgb(0, 17, 98);
+    background: linear-gradient(90deg, rgba(0, 17, 98, 1) 0%, rgba(97, 116, 201, 1) 89%);
+}
+
+h2 {
+    text-shadow: 2px 2px 10px rgb(0, 0, 0), 2px 2px 5px rgb(90, 53, 255), 2px 2px 5px #00f;
+    font-family: 'NeusaNextPro-WideRegular';
+}

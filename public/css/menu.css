@@ -1,0 +1,58 @@
+.contenedor-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-inicio {
+    color: white !important;
+}
+
+.btn-inicio:hover {
+    color: rgb(36, 36, 36) !important;
+    background-color: white;
+}
+
+.menu-inicio {
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.menu-sesion {
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-sesion-i {
+    color: white !important;
+    border: solid 0.5px white;
+    background-color: transparent;
+    margin-right: 15px !important;
+    max-height: 30px;
+    padding: .5rem 1rem;
+    text-decoration: none;
+}
+
+.btn-sesion-r {
+    color: rgb(36, 36, 36) !important;
+    background-color: white;
+    border: solid 0.5px white;
+    max-height: 30px;
+    justify-self: center;
+    padding: .5rem 1rem;
+    text-decoration: none;
+}
+
+.sombra-nav {
+    background: rgb(39, 45, 74);
+    background: linear-gradient(90deg, rgba(39, 45, 74, 1) 0%, rgba(97, 116, 201, 1) 61%, rgba(94, 77, 153, 1) 93%);
+    box-shadow: 2px 2px 5px #666;
+}
+
+.footer- {
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+}
