@@ -13,10 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, "index"]);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('Home.index');
+})->name('Home.index');
+
+Route::get('iniciar-sesion', function(){
+    return view('auth/login');
+});
+
+Route::get('registrarse', function () {
+    return view('auth/register');
+});
