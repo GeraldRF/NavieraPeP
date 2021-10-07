@@ -13,6 +13,6 @@
 
 @section('body')
 
-<x-home_slider></x-home_slider>
+
 
 @endsection
