@@ -1,18 +1,16 @@
-@extends('Layouts.menu')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('title', "Naviera PeP")
-
-@section('styles')
-    <link href="{{ URL:: asset('css/home_index.css')}}" rel="stylesheet">
+<head>
+    <link href="{{ URL::asset('css/home_index.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="css/home_slider.css">
-@endsection
+    <title>Naviera PeP</title>
+</head>
 
-@section('scripts')
+<body>
     
-@endsection
+<x-menu></x-menu>
 
-@section('body')
+</body>
 
-
-
-@endsection
+</html>
