@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.vendor-comun')
 
-<head>
+@section('title','Inicio - Naviera PeP')
+ 
+@section('styles')
     <link href="{{ URL::asset('css/home_index.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="css/home_slider.css">
-    <title>Naviera PeP</title>
-</head>
+@endsection
 
-<body>
-   <img class="fondo" src="/imagenes/crucero.jpg" alt="">
-    <div class="container">
-        <x-menu></x-menu>
-    </div>
-
-</body>
-
-</html>
+@section('content')
+    <img class="fondo" src="/imagenes/crucero.jpg" alt="">
+@endsection
+   
