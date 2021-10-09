@@ -8,8 +8,10 @@
 </head>
 
 <body>
-    
-<x-menu></x-menu>
+   <img class="fondo" src="/imagenes/crucero.jpg" alt="">
+    <div class="container">
+        <x-menu></x-menu>
+    </div>
 
 </body>
 

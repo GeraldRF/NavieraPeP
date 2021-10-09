@@ -3,7 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    @yield('styles')
     <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
     <link href="{{ URL::asset('css/menu.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -27,7 +26,7 @@
 </head>
 
     <header>
-        <nav class="navbar navbar-expand-lg {{--navbar-light bg-dark--}} sombra-nav">
+        <nav class="navbar navbar-expand-lg {{--navbar-light bg-dark--}}">
             <img src="imagenes/Logo.png" style="max-width: 100px; margin:0 5px 0 5px;">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
