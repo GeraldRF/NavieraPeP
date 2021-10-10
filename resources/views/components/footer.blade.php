@@ -1,3 +1,3 @@
 <footer>
-    <div class="footer-"><h6>©2021 Naviera PeP</h6> <h6>Todos los derechos reservados</h6> </div>
+    <div class="footer-"><p>©2021 Naviera PeP</p> <p>Todos los derechos reservados</p> </div>
 </footer>

@@ -60,6 +60,12 @@
 }
 
 .footer- {
+    bottom: 0;
+    background-color: #bcc7ff33;
+    max-height: max-content;
+    width: 100%;
+    color: white;
+    font-size: x-large;
     display: flex;
     flex-direction: row;
     gap: 20px;

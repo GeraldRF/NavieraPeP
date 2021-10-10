@@ -29,4 +29,5 @@
 <body>
     <x-menu></x-menu>
     @yield('content') 
+    <x-footer></x-footer>
 </body>

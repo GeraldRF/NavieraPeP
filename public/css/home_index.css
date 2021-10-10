@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #2D60AC !important;
     position: relative;
     /* background-image: url('/imagenes/crucero.jpg') !important;
@@ -6,7 +6,8 @@ body{
     background-size: cover;
     background-position: bottom bottom; */
 }
-.fondo{
+
+.fondo {
     position: absolute;
     z-index: -1;
     width: 100%;
@@ -18,20 +19,26 @@ body{
 }
 
 .contenedor {
-    min-height: 1000px;
-    align-items: center;
+    width: 700px;
+    display: grid;
+    grid-template-rows: 3fr 5fr 2fr;
+    color: white;
+    align-items: center
+}
+
+.contenedor-padre {
     display: flex;
-    flex-direction: column;
-    gap: initial;
-    border-radius: 30px 30px 0 0;
-    box-shadow: 0 -1px 2px #666;
-    background: rgb(0, 0, 0);
-    background: radial-gradient(circle, rgba(0, 0, 0, 1) 6%, rgba(141, 0, 0, 1) 14%, rgba(43, 135, 0, 1) 20%, rgba(0, 0, 0, 1) 32%, rgba(111, 0, 0, 1) 35%, rgba(255, 255, 255, 1) 70%, rgba(255, 255, 255, 1) 81%, rgba(255, 255, 255, 1) 90%);
-    /* background: rgb(194, 204, 255);
-    background: linear-gradient(90deg, rgba(194, 204, 255, 1) 0%, rgba(255, 255, 255, 1) 100%, rgba(0, 232, 255, 1) 100%); */
-    position: relative;
-    top: -23px;
-    bottom: 23px;
+    justify-content: center;
+    text-align: center;
+    height: 83%;
+}
+
+.contenedor-botones {
+    display: flex;
+    row-gap: 20px;
+    column-gap: 100px;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .table- {
@@ -44,4 +51,10 @@ body{
     background: rgb(0, 0, 0);
     background: rgb(194, 204, 255);
     background: linear-gradient(90deg, rgba(194, 204, 255, 1) 0%, rgba(255, 255, 255, 1) 100%, rgba(0, 232, 255, 1) 100%);
+}
+
+@media(max-width:991px) {
+    .contenedor-padre {
+        height: -webkit-fill-available;
+    }
 }
