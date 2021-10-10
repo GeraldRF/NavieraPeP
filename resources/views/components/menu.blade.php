@@ -1,23 +1,32 @@
     <header>
-        <nav class="navbar navbar-expand-lg {{--navbar-light bg-dark--}}">
-            <img src="imagenes/Logo.png" style="max-width: 100px; margin:0 5px 0 5px;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                {{-- <span class="navbar-toggler-icon"></span> --}}
-                <img src="imagenes/menu.png" style="max-width: 40px">
-            </button>
+        <nav class="navbar navbar-expand-lg {{-- navbar-light bg-dark --}}">
+            <img src="imagenes/Logo.png" class="logo">
 
-            <div class="collapse navbar-collapse contenedor-menu" id="navbarSupportedContent">
+            <div class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+                aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"
+                style="border: none;">
+                <div class="hamburger-inner-0"></div>
+                <div class="hamburger-inner-1"></div>
+                <div class="hamburger-inner-2"></div>
+            </div>
+
+            <div class="collapse navbar-collapse contenedor-menu" id="collapsibleNavId">
                 <div class="menu-inicio">
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item ">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0" style="gap: 15px">
+                        <li class="nav-item">
                             <a class="nav-link btn-inicio" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-inicio" href="#">Más</a>
+                            <a class="nav-link btn-inicio" href="#">Viajes</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link btn-inicio" href="#">Menos</a>
+                            <a class="nav-link btn-inicio" href="#">Trasportar</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link btn-inicio" href="#">Rutas</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link btn-inicio" href="#">Contactanos</a>
                         </li>
                     </ul>
                 </div>
@@ -64,3 +73,8 @@
             </div>
         </nav>
     </header>
+    <script>
+        $('.hamburger').on('click', function() {
+            $('.hamburger').toggleClass('open');
+        });
+    </script>
