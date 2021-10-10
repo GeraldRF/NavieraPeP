@@ -4,7 +4,7 @@
 
             <div class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
                 aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"
-                style="border: none;">
+                style="border: none; align-items: self-end;">
                 <div class="hamburger-inner-0"></div>
                 <div class="hamburger-inner-1"></div>
                 <div class="hamburger-inner-2"></div>
