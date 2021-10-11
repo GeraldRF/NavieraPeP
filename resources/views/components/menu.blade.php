@@ -1,5 +1,5 @@
     <header>
-        <nav class="navbar navbar-expand-lg {{-- navbar-light bg-dark --}}">
+        <nav class="navbar navbar-expand-lg">
             <img src="imagenes/Logo.png" class="logo">
 
             <div class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
