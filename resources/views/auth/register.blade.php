@@ -1,5 +1,5 @@
-@extends('Layouts.menu')
-@section('body')
+@extends('layouts.vendor-comun')
+@section('content')
 
 
 <x-guest-layout>

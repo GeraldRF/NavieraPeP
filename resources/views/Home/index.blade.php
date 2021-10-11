@@ -11,7 +11,7 @@
     <img class="fondo" src="/imagenes/crucero.jpg" alt="">
     <div class="contenedor-padre">
         <div class="contenedor">
-            <div style="margin-top:10px; display: flex; flex-direction:column; gap:20px;">
+            <div style="margin-top:40px; display: flex; flex-direction:column; gap:20px;">
                 <h1>Agencia de viajes y transporte, con reconocimiento a nivel mundial.</h1>
                 <h3>Viaja feliz, viaja seguro con nosotros.</h3>
             </div>
