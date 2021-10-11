@@ -56,7 +56,7 @@
                             <li class="nav-item" style="align-self: center;">
                                 <span style="color: white;">{{ Auth::user()->name }}</span>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" style="max-height: 36px">
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();

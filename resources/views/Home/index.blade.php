@@ -17,7 +17,9 @@
             </div>
             <div class="contenedor-botones">
                 <a href=""><img src="/imagenes/conozcamas.png"  style="width: 200px" alt="Conozca mas"></a>
+                @if (!Auth::user())
                 <a href=""><img src="/imagenes/creatucuenta.png" style="width: 200px" alt="Crea tu cuenta"></a>
+                @endif
             </div>
             <div>
                 <h5>Contamos con factura electronica.</h5>

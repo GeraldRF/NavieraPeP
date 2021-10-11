@@ -2,10 +2,10 @@
 @section('content')
 
 <x-guest-layout>
-    <x-jet-authentication-card>
+    <x-auth-card>
         <x-slot name="logo">
-            {{--<x-jet-authentication-card-logo />--}}
-            <img src="imagenes/Logo-sesion.png" style="max-width: 160px">
+            {{--<x-jet-authentication-card-logo /> <img src="imagenes/Logo-sesion.png" style="max-width: 160px">--}}
+           <h1 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: xx-large; color:white">Naviera PeP</h1>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
