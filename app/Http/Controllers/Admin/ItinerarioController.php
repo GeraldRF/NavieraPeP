@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Itinerario;
+use App\Models\Ruta;
+use App\Models\Nave;
 
 class ItinerarioController extends Controller
 {
@@ -26,7 +28,18 @@ class ItinerarioController extends Controller
      */
     public function create()
     {
-        return view('admin.itinerario.create');
+        $rutas = ['' => ''];
+        foreach (Ruta::all() as $ruta) {
+            $rutas+= [$ruta->id => $ruta->origen.'-'.$ruta -> destino];
+        }
+
+        $naves = ['' => ''];
+        foreach (Nave::all() as $nave) {
+            $naves += [$nave->id => $nave->nombre.'-'.$nave -> cap_personas.'-'.$nave -> cap_rutas];
+        }
+
+
+        return view('admin.itinerario.create', compact('rutas', 'naves'));
     }
 
     /**
@@ -37,7 +50,6 @@ class ItinerarioController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
