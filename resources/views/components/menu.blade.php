@@ -53,6 +53,7 @@
                         </ul>
                     @else
                         <ul class="nav justify-content-center" style="gap: 20px">
+                            <li class="nav-item"><a class="btn-sesion-i" href="/admin">Entrar en modo admin</a></li>
                             <li class="nav-item" style="align-self: center;">
                                 <span style="color: white;">{{ Auth::user()->name }}</span>
                             </li>
