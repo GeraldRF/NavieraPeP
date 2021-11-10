@@ -40,8 +40,15 @@ class NaveController extends Controller
      */
     public function store(Request $request)
     {
-        $nave = new Nave;
-        $nave->create($request);
+        $request->validate([
+            'nombre' => 'required',
+            'cap_pasajeros' => ['required', 'integer'],
+            'cap_carga' => ['required','integer']
+        ]);
+
+        Nave::create($request -> all());
+
+        return redirect() -> route('admin.naves.index')->with(['success' => 'Se agrego la nave "'. $request->nombre . '" correctamente.']);
     }
 
     /**
@@ -75,7 +82,15 @@ class NaveController extends Controller
      */
     public function update(Request $request, Nave $nave)
     {
-        //
+        $request->validate([
+            'nombre' => 'required',
+            'cap_pasajeros' => ['required', 'integer'],
+            'cap_carga' => ['required','integer']
+        ]);
+
+        $nave -> update($request -> all());
+
+        return redirect() -> route('admin.naves.index')->with(['success' => 'Se actualizo la nave correctamente']);
     }
 
     /**
@@ -86,6 +101,10 @@ class NaveController extends Controller
      */
     public function destroy(Nave $nave)
     {
-        //
+        
+        $nom = $nave -> nombre;
+
+        $nave -> delete();
+        return redirect() -> route('admin.naves.index')->with(['success' => 'Se elimino la ruta "'. $nom .'" correctamente']);
     }
 }

@@ -40,12 +40,18 @@ class RutaController extends Controller
      */
     public function store(Request $request)
     {
-        
-         $request -> validate([
-                'origen' => 'required',
-                'destino' => 'required'
-         ]);
 
+        $request->validate([
+            'origen' => 'required',
+            'destino' => 'required'
+        ]);
+
+        Ruta::create($request->all());
+
+        $origen = $request -> origen;
+        $destino = $request -> destino;
+
+        return redirect() -> route('admin.rutas.index')->with(['success' => 'Se agrego la ruta "'. $origen.' - '.$destino.'" correctamente']);
     }
 
     /**
@@ -56,7 +62,7 @@ class RutaController extends Controller
      */
     public function show(Ruta $ruta)
     {
-        return view('admin.ruta.show', compact('ruta'));
+        return view('admin.rutas.show', compact('ruta'));
     }
 
     /**
@@ -79,7 +85,20 @@ class RutaController extends Controller
      */
     public function update(Request $request, Ruta $ruta)
     {
-        //
+        $request->validate([
+            'origen' => 'required',
+            'destino' => 'required'
+        ]);
+
+        $origen1 = $ruta -> origen;
+        $destino1 = $ruta -> destino;
+
+        $origen2 = $request -> origen;
+        $destino2 = $request -> destino;
+
+        $ruta -> update($request -> all());
+
+        return redirect() -> route('admin.rutas.index')->with(['success' => 'Se actualizo la ruta "'. $origen1.' - '.$destino1.'" por "'. $origen2.' - '.$destino2.'" correctamente']);
     }
 
     /**
@@ -90,6 +109,11 @@ class RutaController extends Controller
      */
     public function destroy(Ruta $ruta)
     {
-        //
+        $origen = $ruta -> origen;
+        $destino = $ruta -> destino;
+
+        $ruta -> delete();
+
+        return redirect() -> route('admin.rutas.index')->with(['success' => 'Se elimino la ruta "'. $origen.' - '.$destino.'" correctamente']);
     }
 }

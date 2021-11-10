@@ -7,13 +7,16 @@
 @stop
 
 @section('content')
-    <p>Editar</p>
-@stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+    <div class="card">
+        <div class="card-body">
+            {!! Form::model($ruta, ['route' => ['admin.rutas.update', $ruta], 'method' => 'put']) !!}
 
-@section('js')
-    
+            @include('admin.ruta.partials.form')
+
+            {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
+
 @stop

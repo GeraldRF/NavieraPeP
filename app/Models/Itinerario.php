@@ -9,7 +9,7 @@ class Itinerario extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fecha_hora_salida', 'fecha_hora_llegada', 'ruta_id', 'nave_id', 'precio'];
+    protected $fillable = ['fecha_hora_salida', 'fecha_hora_llegada', 'ruta_id', 'nave_id', 'precio', 'cant_pasajeros', 'cant_carga'];
 
     public function nave(){
         return $this->belongsTo(Nave::class);

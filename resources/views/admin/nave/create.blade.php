@@ -7,13 +7,16 @@
 @stop
 
 @section('content')
-    <p>Crear</p>
-@stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+    <div class="card">
+        <div class="card-body">
+            {!! Form::open(['route' => 'admin.naves.store']) !!}
 
-@section('js')
-    
+            @include('admin.nave.partials.form')
+
+            {!! Form::submit('Crear', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
+
 @stop

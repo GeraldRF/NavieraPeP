@@ -11,4 +11,14 @@ class HomeController extends Controller
 
         return view('admin.index');
     }
+
+    public function informe_estadistica(){
+
+
+
+
+
+        return 'pdf';
+        
+    }
 }

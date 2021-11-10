@@ -7,13 +7,15 @@
 @stop
 
 @section('content')
-    <p>Editar</p>
-@stop
+<div class="card">
+    <div class="card-body">
+        {!! Form::model($nave, ['route' => ['admin.naves.update', $nave], 'method' => 'put']) !!}
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+        @include('admin.nave.partials.form')
 
-@section('js')
-    
+        {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::close() !!}
+    </div>
+</div>
+
 @stop

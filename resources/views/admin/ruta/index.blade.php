@@ -7,10 +7,17 @@
 @stop
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success">
+            <strong>{{ session('success') }}</strong>
+        </div>
+    @endif
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-primary" href="{{route('admin.rutas.create')}}">Agregar</a>
+            <a class="btn btn-primary" href="{{ route('admin.rutas.create') }}">Agregar</a>
+
+
         </div>
         <div class="card-body">
             <table class="table table-striped">
@@ -28,11 +35,12 @@
                             <td>{{ $ruta->id }}</td>
                             <td>{{ $ruta->origen }}</td>
                             <td>{{ $ruta->destino }}</td>
-                            <td width="10px"><a class="btn btn-warning btn-sm" href="{{ route('admin.rutas.edit', $ruta) }}">Editar</a></td>
+                            <td width="10px"><a class="btn btn-warning btn-sm"
+                                    href="{{ route('admin.rutas.edit', $ruta) }}">Editar</a></td>
                             <td width="10px">
-                                <form action="{{ route('admin.rutas.destroy', $ruta) }}">
+                                <form action="{{ route('admin.rutas.destroy', $ruta) }}" method="POST">
                                     @csrf
-                                    @method('delete');
+                                    @method('delete')
                                     <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
                                 </form>
                             </td>

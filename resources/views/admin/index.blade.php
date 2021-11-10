@@ -2,12 +2,10 @@
 
 @section('title', 'Home')
 
-@section('content_header')
-    <h1>Naviera PeP</h1>
-@stop
-
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <div class="text-center justify-content-center">
+        <img src="imagenes/Logo.png" style="margin-top:10%;" alt="Naviera PeP">
+    </div>
 @stop
 
 @section('css')
@@ -15,5 +13,5 @@
 @stop
 
 @section('js')
-    
+
 @stop

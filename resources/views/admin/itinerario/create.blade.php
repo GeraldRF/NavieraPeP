@@ -3,17 +3,18 @@
 @section('title', 'Crear')
 
 @section('content_header')
-    <h1>Crear</h1>
+    <h1>Crear itinerario</h1>
 @stop
 
 @section('content')
-    <p>Crear</p>
-@stop
+<div class="card">
+    <div class="card-body">
+        {!! Form::open(['route' => 'admin.itinerarios.store']) !!}
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+        @include('admin.itinerario.partials.form')
 
-@section('js')
-    
+        {!! Form::submit('Crear', ['class' => 'btn btn-primary']) !!}
+        {!! Form::close() !!}
+    </div>
+</div>
 @stop
