@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Home')
+@section('title', 'Itinerarios')
 
 @section('content_header')
-    <h1>Naviera PeP</h1>
+    <h1>Itinerarios</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>Itinerario</p>
 @stop
 
 @section('css')

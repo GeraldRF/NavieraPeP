@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Ruta;
+
+use function GuzzleHttp\Promise\all;
 
 class RutaController extends Controller
 {
@@ -13,7 +17,9 @@ class RutaController extends Controller
      */
     public function index()
     {
-        //
+        $rutas = Ruta::all();
+
+        return view('admin.ruta.index', compact('rutas'));
     }
 
     /**
@@ -23,7 +29,7 @@ class RutaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.ruta.create');
     }
 
     /**
@@ -34,7 +40,12 @@ class RutaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+         $request -> validate([
+                'origen' => 'required',
+                'destino' => 'required'
+         ]);
+
     }
 
     /**
@@ -43,9 +54,9 @@ class RutaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ruta $ruta)
     {
-        //
+        return view('admin.ruta.show', compact('ruta'));
     }
 
     /**
@@ -54,9 +65,9 @@ class RutaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ruta $ruta)
     {
-        //
+        return view('admin.ruta.edit', compact('ruta'));
     }
 
     /**
@@ -66,7 +77,7 @@ class RutaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ruta $ruta)
     {
         //
     }
@@ -77,7 +88,7 @@ class RutaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ruta $ruta)
     {
         //
     }

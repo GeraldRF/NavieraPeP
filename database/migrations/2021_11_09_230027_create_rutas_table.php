@@ -17,6 +17,7 @@ class CreateRutasTable extends Migration
             $table->id();
             $table->string('origen');
             $table->string('destino');
+            $table->enum('es_usado', [0,1])->default(0);
             $table->timestamps();
         }); 
     }

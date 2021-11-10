@@ -15,10 +15,11 @@ class CreateNavesTable extends Migration
     {
         Schema::create('naves', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('nombre');
             $table->integer('cap_pasajeros');
             $table->integer('cap_carga');
+            $table->enum('es_usado', [0,1])->default(0);
+            $table->timestamps();
         });
     }
 

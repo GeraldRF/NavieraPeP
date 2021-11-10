@@ -14,9 +14,14 @@ class CreateItinerariosTable extends Migration
     public function up()
     {
         Schema::create('itinerarios', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->dateTime('fecha-hora-salida');
-            $table->dateTime('fecha-hora-llegada');
+            $table->id();
+            $table->dateTime('fecha_hora_salida');
+            $table->dateTime('fecha_hora_llegada');
+
+            $table->foreignId('ruta_id')->references('id')->on('rutas')->onDelete('cascade');
+            $table->foreignId('nave_id')->references('id')->on('naves')->onDelete('cascade');
+
+            $table->double('precio');
             $table->timestamps();
         });
     }

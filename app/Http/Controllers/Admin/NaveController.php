@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Nave;
+
+use function GuzzleHttp\Promise\all;
 
 class NaveController extends Controller
 {
@@ -13,7 +17,9 @@ class NaveController extends Controller
      */
     public function index()
     {
-        //
+        $naves = Nave::all();
+
+        return view('admin.nave.index', compact('naves'));
     }
 
     /**
@@ -23,7 +29,7 @@ class NaveController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.nave.create');
     }
 
     /**
@@ -34,7 +40,8 @@ class NaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nave = new Nave;
+        $nave->create($request);
     }
 
     /**
@@ -43,9 +50,9 @@ class NaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nave $nave)
     {
-        //
+        return view('admin.nave.show', compact('nave'));
     }
 
     /**
@@ -54,9 +61,9 @@ class NaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Nave $nave)
     {
-        //
+        return view('admin.nave.edit', compact('nave'));
     }
 
     /**
@@ -66,7 +73,7 @@ class NaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Nave $nave)
     {
         //
     }
@@ -77,7 +84,7 @@ class NaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Nave $nave)
     {
         //
     }

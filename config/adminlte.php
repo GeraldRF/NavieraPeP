@@ -241,17 +241,17 @@ return [
         ['header' => 'ADMINISTRACIÓN'],
         [
             'text' => ' Itinerarios',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.itinerarios.index',
             'icon' => 'fas fa-clipboard-list',
         ],
         [
             'text' => 'Rutas',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.rutas.index',
             'icon' => 'fas fa-map-marked-alt',
         ],
         [
             'text' => 'Naves',
-            'url'  => 'admin/settings',
+            'route'  => 'admin.naves.index',
             'icon' => 'fas fa-ship',
         ],
         ['header' => 'GENERACION DE INFORMES'],

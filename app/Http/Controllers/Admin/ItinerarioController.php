@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Itinerario;
 
 class ItinerarioController extends Controller
 {
@@ -13,7 +15,8 @@ class ItinerarioController extends Controller
      */
     public function index()
     {
-        //
+        $itinerarios = Itinerario::all();
+        return view('admin.itinerario.index', compact('itinerarios'));
     }
 
     /**
@@ -23,7 +26,7 @@ class ItinerarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.itinerario.create');
     }
 
     /**
@@ -34,7 +37,7 @@ class ItinerarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -43,9 +46,9 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Itinerario $itineario)
     {
-        //
+        return view('admin.itinerario.show', compact('itinerario'));
     }
 
     /**
@@ -54,9 +57,9 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Itinerario $itineario)
     {
-        //
+        return view('admin.itinerario.edit', compact('itinerario'));
     }
 
     /**
@@ -66,7 +69,7 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Itinerario $itineario)
     {
         //
     }
@@ -77,7 +80,7 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Itinerario $itineario)
     {
         //
     }
