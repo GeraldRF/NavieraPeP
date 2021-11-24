@@ -11,5 +11,7 @@ Route::resource('naves', NaveController::class, ['parameters' => [
     'naves' => 'nave'
 ]])->names('admin.naves');
 Route::resource('rutas', RutaController::class)->names('admin.rutas');
-Route::resource('itinerarios', ItinerarioController::class)->names('admin.itinerarios');
+Route::resource('itinerarios', ItinerarioController::class, ['parameters' => [
+    'itinerarios' => 'itinerario'
+]])->names('admin.itinerarios');
 Route::get('generar-informe-estadistica', [HomeController::class, 'informe_estadistica']);

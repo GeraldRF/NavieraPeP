@@ -17,8 +17,10 @@ class ItinerarioController extends Controller
      */
     public function index()
     {
+        $naves = Nave::all();
+        $rutas = Ruta::all();
         $itinerarios = Itinerario::all();
-        return view('admin.itinerario.index', compact('itinerarios'));
+        return view('admin.itinerario.index', compact('itinerarios', 'rutas', 'naves'));
     }
 
     /**
@@ -50,6 +52,17 @@ class ItinerarioController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'fecha_hora_llegada' => ['required', 'regex:/([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[1-9]|1[0-9]|2[0-4]):(0[0-9]|[1-5][0-9])(:(0[1-9]|[1-5][0-9])|)/'],
+            'fecha_hora_salida' => ['required', 'regex:/([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[1-9]|1[0-9]|2[0-4]):(0[0-9]|[1-5][0-9])(:(0[1-9]|[1-5][0-9])|)/'],
+            'ruta_id' => ['required', 'integer'],
+            'nave_id' => ['required','integer'],
+            'precio' => ['required','integer']
+        ]);
+
+        Itinerario::create($request -> all());
+
+        return redirect() -> route('admin.itinerarios.index')->with(['success' => 'Se agrego el itinerario correctamente.']);
     }
 
     /**
@@ -71,7 +84,7 @@ class ItinerarioController extends Controller
      */
     public function edit(Itinerario $itineario)
     {
-        return view('admin.itinerario.edit', compact('itinerario'));
+        return view('admin.itinerario.edit', compact('itineario'));
     }
 
     /**
@@ -81,9 +94,19 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Itinerario $itineario)
+    public function update(Request $request, Itinerario $itinerario)
     {
-        //
+        $request->validate([
+            'fecha_hora_llegada' => ['required', 'regex:/([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[1-9]|1[0-9]|2[0-4]):(0[0-9]|[1-5][0-9])(:(0[1-9]|[1-5][0-9])|)/'],
+            'fecha_hora_salida' => ['required', 'regex:/([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[1-9]|1[0-9]|2[0-4]):(0[0-9]|[1-5][0-9])(:(0[1-9]|[1-5][0-9])|)/'],
+            'ruta_id' => ['required', 'integer'],
+            'nave_id' => ['required','integer'],
+            'precio' => ['required','integer']
+        ]);
+
+        $itinerario -> update($request -> all());
+
+        return redirect() -> route('admin.itinerarios.index')->with(['success' => 'Se edito el itinerario correctamente.']);
     }
 
     /**
@@ -92,8 +115,9 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Itinerario $itineario)
+    public function destroy(Itinerario $itinerario)
     {
-        //
+        $itinerario -> delete();
+        return redirect() -> route('admin.itinerarios.index')->with(['success' => 'Se elimino el itineriario correctamente']);
     }
 }

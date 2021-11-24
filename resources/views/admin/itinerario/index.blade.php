@@ -39,15 +39,23 @@
                 <td>{{ $itinerario->id }}</td>
                 <td>{{ $itinerario->fecha_hora_salida }}</td>
                 <td>{{ $itinerario->fecha_hora_llegada }}</td>
-                <td>{{ $itinerario->ruta_id }}</td>
-                <td>{{ $itinerario->nave_id }}</td>
+                <td>{{ $itinerario->ruta_id }}- @foreach ($rutas as $ruta)
+                    @if ($ruta->id == $itinerario->ruta_id) 
+                       ({{ $ruta->origen." - ".$ruta->destino }})
+                    @endif
+                @endforeach </td>
+                <td>{{ $itinerario->nave_id }}-@foreach ($naves as $nave)
+                    @if ($nave->id == $itinerario->nave_id)
+                       ({{ $nave->nombre }})
+                    @endif
+                @endforeach </td>
                 <td>{{ $itinerario->precio }}</td>
                 <td>{{ $itinerario->cant_pasajeros }}</td>
                 <td>{{ $itinerario->cant_carga }}</td>
                 <td width="10px"><a class="btn btn-warning btn-sm"
                         href="{{ route('admin.itinerarios.edit', $itinerario) }}">Editar</a></td>
                 <td width="10px">
-                    <form action="{{ route('admin.itinerarios.destroy', $nave) }}" method="POST">
+                    <form action="{{ route('admin.itinerarios.destroy', $itinerario) }}" method="POST">
                         @csrf
                         @method('delete')
                         <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>

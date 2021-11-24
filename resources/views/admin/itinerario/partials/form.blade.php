@@ -1,6 +1,6 @@
 <div class="form-group">
     {!! Form::label('fecha_hora_salida', 'Fecha y hora de salida') !!}
-    {!! Form::datetime('fecha_hora_salida', null, ['class' => 'form-control', 'placeholder' => 'dia/mes/año horas:minutos:segundos am/pm', 'id' => 'fecha_hora_salida']) !!}
+    {!! Form::datetime('fecha_hora_salida', null, ['class' => 'form-control', 'placeholder' => 'Ejem: 2022-11-29 09:30 (Puede agregar segundos)', 'id' => 'fecha_hora_salida']) !!}
 
     @error('fecha_hora_salida')
         <span class="text-danger">{{ $message }}</span>
@@ -9,7 +9,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('fecha_hora_llegada', 'Fecha y hora de llegada') !!}
-    {!! Form::datetime('fecha_hora_llegada', null, ['class' => 'form-control', 'placeholder' => 'dia/mes/año horas:minutos:segundos am/pm', 'id' => 'fecha_hora_llegada']) !!}
+    {!! Form::datetime('fecha_hora_llegada', null, ['class' => 'form-control', 'placeholder' => 'Ejem: 2022-11-29 20:30 (Puede agregar segundos)', 'id' => 'fecha_hora_llegada']) !!}
 
     @error('fecha_hora_llegada')
         <span class="text-danger">{{ $message }}</span>
@@ -65,7 +65,7 @@
         $('#fecha_hora_llegada').on('click', function() {
                 var value = $(this).val();
                 if (value == "")) {
-                $(this).val("01/01/0000 00:00:00 am");
+                $(this).val(new Date().now());
                 }
             }
         });
