@@ -15,12 +15,15 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, "index"]);
+Route::post('/filtrar', [HomeController::class, "filtrar"])->name('filtrar');
+Route::post('/busqueda', [HomeController::class, "buscar"])->name('busqueda');
+Route::get('ver/{id}', [HomeController::class, "ver"])->name('ver');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('Home.index');
-})->name('Home.index');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('Home.index');
+// })->name('Home.index');
 
-Route::get('iniciar-sesion', function(){
+Route::get('iniciar-sesion', function () {
     return view('auth/login');
 });
 
