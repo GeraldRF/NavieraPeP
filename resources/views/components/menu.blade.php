@@ -17,13 +17,13 @@
                             <a class="nav-link btn-inicio" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-inicio" href="#">Viajes</a>
+                            <a class="nav-link btn-inicio" href="{{route('viajes')}}">Viajes</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link btn-inicio" href="#">Trasportar</a>
+                            <a class="nav-link btn-inicio" href="{{route('mis-compras')}}">Mis compras</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link btn-inicio" href="#">Rutas</a>
+                            <a class="nav-link btn-inicio" href="{{route('mis-reservas')}}">Mis reservas</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link btn-inicio" href="#">Contactanos</a>

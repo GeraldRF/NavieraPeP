@@ -17,6 +17,10 @@ class ReservaController extends Controller
         //
     }
 
+    public function reservas(){
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

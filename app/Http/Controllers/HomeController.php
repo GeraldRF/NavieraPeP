@@ -13,10 +13,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (!Auth::user()) {
-            return view('Home.index');
-        } else {
-            $viajes = [];
+        return view('Home.index');
+       
+    }
+
+    public function viajes(){
+        $viajes = [];
             $itinerarios = Itinerario::all();
 
             foreach ($itinerarios as $itinerario) {
@@ -41,11 +43,9 @@ class HomeController extends Controller
                 ]]);
             }
 
-            return view('Home.index', compact('viajes'));
-        }
+            return view('Home.viajes', compact('viajes'));
     }
 
-    
    public function ver($id)
    {
      
@@ -99,7 +99,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('Home.index', compact('viajes'));
+        return view('Home.viajes', compact('viajes'));
     }
     public function buscar(Request $busqueda)
     {
@@ -138,7 +138,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('Home.index', compact('viajes'));
+        return view('Home.viajes', compact('viajes'));
     }
     
 }

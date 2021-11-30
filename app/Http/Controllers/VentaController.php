@@ -17,6 +17,10 @@ class VentaController extends Controller
         //
     }
 
+    public function ventas(){
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *

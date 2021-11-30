@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ReservaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,14 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, "index"]);
+
+Route::get('viajes', [HomeController::class, "viajes"])->name('viajes');
 Route::post('/filtrar', [HomeController::class, "filtrar"])->name('filtrar');
 Route::post('/busqueda', [HomeController::class, "buscar"])->name('busqueda');
-Route::get('ver/{id}', [HomeController::class, "ver"])->name('ver');
+Route::middleware(['auth:sanctum', 'verified'])->get('ver/{id}', [HomeController::class, "ver"])->name('ver');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('mis-reservas', [ReservaController::class, "reservas"])->name('mis-reservas');
+Route::middleware(['auth:sanctum', 'verified'])->get('mis-compras', [VentaController::class, "compras"])->name('mis-compras');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('Home.index');
