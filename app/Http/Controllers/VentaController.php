@@ -21,12 +21,7 @@ class VentaController extends Controller
 
     public function ventas(){
         
-        $venta = Venta::all();
-       
-        if(Auth::user()->id){}
-        
-        $compras = [];
-        
+        $compras = Venta::all()->where('user_id', Auth::user()->id);    
        
 
         return view('venta.mis_compras', compact('compras'));
@@ -39,7 +34,8 @@ class VentaController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('venta.checkout', compact(''));
     }
 
     /**
@@ -50,7 +46,9 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Venta::create($request->all());
+        
+        return redirect() -> route('mis-compras')->with(['success'=>'Su compra fue realizada con exito']);
     }
 
     /**

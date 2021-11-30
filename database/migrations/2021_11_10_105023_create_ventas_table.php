@@ -17,13 +17,14 @@ class CreateVentasTable extends Migration
             $table->id();
 
             $table->foreignId('itinerario_id')->references('id')->on('itinerarios');
- 
+            $table->enum('tipo', ['pasaje'=>0, 'carga'=>1]);
             $table->integer('cantidad');
             $table->double('total');
             $table->date('fecha_venta');
 
             $table->foreignId('user_id')->references('id')->on('users');
-
+            $table->text('descripcion')->nullable(true);
+            
             $table->timestamps();
         });
     }

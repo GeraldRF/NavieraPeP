@@ -4,7 +4,6 @@
 
 @section('styles')
     <link href="{{ URL::asset('css/home_index.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/ver.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -18,7 +17,7 @@
                 <div>
                     <h3 style="text-align: center;">{{ $ruta->origen }} - {{ $ruta->destino }}</h3>
                 </div>
-                <div style="display: flex; flex-direction: row; gap:40px;justify-content: center">
+                <div style="display: flex; flex-direction: row; gap:40px;justify-content: center; flex-wrap: wrap">
                     <div style="padding:15px">
                         <div style="display:flex;justify-content: center;">
                             <h6><strong>Salida</strong></h6>
@@ -80,15 +79,15 @@
                                         style="list-style: none; padding: 5px 15px 0 15px; display:flex; flex-direction: column; justify-content: center; gap:10px;">
 
                                         <div>
-                                            {!! Form::open(['route' => 'ventas.index']) !!}
-                                            {!! Form::text('cantidad', null, ['class' => 'form-control','placeholder'=>'Ingrese la cantidad a comprar']) !!}
+                                            {!! Form::open(['route' => 'ventas.']) !!}
+                                            {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a comprar']) !!}
                                             {!! Form::submit('Comprar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div>O</div>
-                                        <div>
+                                        <div id="reservaPasaje">
                                             {!! Form::open(['route' => 'reservas.index']) !!}
-                                            {!! Form::text('cantidad', null, ['class' => 'form-control','placeholder'=>'Ingrese la cantidad a reservar']) !!}
+                                            {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a reservar']) !!}
                                             {!! Form::submit('Reservar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
                                         </div>
@@ -106,6 +105,8 @@
 
                             <div style="min-width: 250px; min-height: 250px;">
                                 <div id="carga_img" style="display: block">
+
+                                    
                                     <img src="/imagenes/carga.png" alt="carga.png"
                                         style="width: 220px; height: 220px; padding:0 10px 0 10px;">
                                 </div>
@@ -116,20 +117,23 @@
                                         <div>
                                             {!! Form::open(['route' => 'ventas.index']) !!}
                                             <div style="display: flex; flex-direction: row; align-items: baseline; gap:5px">
-                                                {!! Form::text('cantidad', null, ['class' => 'form-control','placeholder'=>'Ingrese la cantidad a comprar']) !!}<h6>KG</h6>
+                                                {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a comprar']) !!}<h6>KG</h6>
                                             </div>
-                                            
+
                                             {!! Form::submit('Comprar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div>O</div>
-                                        <div>
+                                        <div id="reservaCarga">
+
                                             {!! Form::open(['route' => 'reservas.index']) !!}
                                             <div style="display: flex; flex-direction: row; align-items: baseline; gap:5px">
-                                                {!! Form::text('cantidad', null, ['class' => 'form-control','placeholder'=>'Ingrese la cantidad a reservar']) !!}<h6>KG</h6>
+                                                {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a reservar']) !!}<h6>KG</h6>
                                             </div>
                                             {!! Form::submit('Reservar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -149,13 +153,37 @@
             $("#pasajero_btns").css("display", "block");
             $("#carga_img").css("display", "block");
             $("#carga_btns").css("display", "none");
+
+            bloquearReserva();
         });
         $("#carga").on('click', function() {
             $("#carga_img").css("display", "none");
             $("#carga_btns").css("display", "block");
             $("#pasajero_img").css("display", "block");
             $("#pasajero_btns").css("display", "none");
+
+            bloquearReserva();
         });
+
+        function bloquearReserva() {
+            var fecha = "<?= $itinerario->fecha_hora_salida ?>";
+
+
+            var fecha1 = new Date(fecha);
+            var fecha2 = new Date();
+
+            var difference = Math.abs(fecha1 - fecha2);
+            var days = difference / (1000 * 3600 * 24)
+
+            if (days <= 2) {
+                var text = "<p>No se pude reservar porque el viaje esta proximo.</p>" +
+                    "<p>Para reservar un viaje se necesitan almenos 3 dias de anticipacion,</p>" +
+                    "<p>ya que al quedar 2 se debe realizar el pago correspondiente.</p>";
+
+                $("#reservaPasaje").html(text);
+                $("#reservaCarga").html(text);
+            }
+        }
     </script>
 
 
