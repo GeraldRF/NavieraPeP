@@ -16,7 +16,7 @@
 
             {!! Form::label('name', 'Nombre') !!}
             {!! Form::text('name', null, ['class'=>'form-control','placeholder' => 'Ingrese el nombre']) !!}
-            {!! Form::label('email', 'Correo electronico | Nombre de usuario') !!}
+            {!! Form::label('email', 'Correo electronico') !!}
             {!! Form::text('email', null, ['class'=>'form-control','placeholder' => 'Ingrese el correo']) !!}
             {!! Form::label('password', 'Contraseña') !!}
             {!! Form::text('password', null, ['class'=>'form-control','placeholder' => 'Ingrese la contraseña']) !!}

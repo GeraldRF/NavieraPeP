@@ -249,6 +249,11 @@ return [
             'route'  => 'admin.naves.index',
             'icon' => 'fas fa-ship',
         ],
+        [
+            'text' => 'Cajeros',
+            'route'  => 'admin.cajeros.index',
+            'icon' => 'fas fa-portrait',
+        ],
         ['header' => 'GENERACION DE INFORMES'],
         [
             'text' => 'Informe de estadisticas',
