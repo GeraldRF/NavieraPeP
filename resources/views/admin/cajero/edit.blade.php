@@ -11,7 +11,7 @@
     <div class="card-body">
         {!! Form::model($cajero, ['route' => ['admin.cajeros.update', $cajero], 'method' => 'put']) !!}
 
-        @include('admin.cajero.partials.form')
+        @include('admin.cajero.partials.formedit')
 
         {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
         {!! Form::close() !!}

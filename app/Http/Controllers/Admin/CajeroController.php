@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class CajeroController extends Controller
 {
@@ -84,9 +85,24 @@ class CajeroController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $cajero)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($cajero->id)],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+        
+
+        if(User::find($cajero->id)->password == $request->password)
+        $cajero -> update(['name'=>$request->name, 'email'=>$request->email, 'password'=>$request->password]);
+
+        else 
+        $cajero -> update(['name'=>$request->name, 'email'=>$request->email, 'password'=>Hash::make($request->password)]);
+
+        return redirect() -> route('admin.cajeros.index')->with(['success' => 'Se edito el cajero correctamente.']);
+    
     }
 
     /**
