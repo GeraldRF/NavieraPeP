@@ -17,7 +17,7 @@ class CreateConfiguracionInicialsTable extends Migration
             $table->id();
             $table->boolean('configurado');
             $table->timestamps();
-        });
+        }); 
     }
 
     /**
