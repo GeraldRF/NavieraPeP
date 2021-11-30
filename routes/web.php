@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfiguracionInicial;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VentaController;
@@ -15,6 +16,8 @@ use App\Http\Controllers\ReservaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post('configurar', [ConfiguracionInicial::class, "configurar"])->name('configurar');
 
 Route::get('/', [HomeController::class, "index"]);
 

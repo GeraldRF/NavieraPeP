@@ -21,7 +21,14 @@
     
 </head>
 <body>
+    @if(isset($conf))
+    @if ($conf)
+        <x-menu></x-menu>
+    @endif
+    
+    @else
     <x-menu></x-menu>
+    @endif
     @yield('content') 
     <x-footer></x-footer>
 </body>

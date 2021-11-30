@@ -18,7 +18,9 @@ class ReservaController extends Controller
     }
 
     public function reservas(){
-        
+
+
+        return view('venta.mis_reservas');
     }
 
     /**

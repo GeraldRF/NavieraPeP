@@ -31,7 +31,17 @@
 
     @else
 
-    <img class="fondo" src="/imagenes/crucero.jpg" alt="">
+    @if (Auth::user()->roll == 2)
+    
+    <?php echo '<script>
+        window.location = "'.route('admin').'"
+   </script>'; ?>
+
+    @elseif (Auth::user()->roll == 1)
+
+    @else
+
+       <img class="fondo" src="/imagenes/crucero.jpg" alt="">
     <div class="contenedor-padre">
         <div class="contenedor">
             <div style="margin-top:40px; display: flex; flex-direction:column; gap:20px;">
@@ -46,6 +56,9 @@
             </div>
         </div>
     </div>
+    @endif
+
+    
 
     @endif
 

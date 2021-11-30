@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\NaveController;
 use App\Http\Controllers\Admin\RutaController;
 use App\Http\Controllers\Admin\ItinerarioController;
 
-Route::get('', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('admin');
 Route::resource('naves', NaveController::class, ['parameters' => [
     'naves' => 'nave'
 ]])->names('admin.naves');

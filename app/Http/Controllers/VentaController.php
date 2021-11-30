@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Venta;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VentaController extends Controller
 {
@@ -19,6 +21,15 @@ class VentaController extends Controller
 
     public function ventas(){
         
+        $venta = Venta::all();
+       
+        if(Auth::user()->id){}
+        
+        $compras = [];
+        
+       
+
+        return view('venta.mis_compras', compact('compras'));
     }
 
     /**
