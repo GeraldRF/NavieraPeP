@@ -7,7 +7,16 @@
 @stop
 
 @section('content')
-    <p>Editar</p>
+<div class="card">
+    <div class="card-body">
+        {!! Form::model($itinerario, ['route' => ['admin.itinerarios.update', $itinerario], 'method' => 'put']) !!}
+
+        @include('admin.itinerario.partials.form')
+
+        {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::close() !!}
+    </div>
+</div>
 @stop
 
 @section('css')

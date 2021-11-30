@@ -71,7 +71,7 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Itinerario $itineario)
+    public function show(Itinerario $itinerario)
     {
         return view('admin.itinerario.show', compact('itinerario'));
     }
@@ -82,9 +82,19 @@ class ItinerarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Itinerario $itineario)
+    public function edit(Itinerario $itinerario)
     {
-        return view('admin.itinerario.edit', compact('itineario'));
+        $rutas = ['' => ''];
+        foreach (Ruta::all() as $ruta) {
+            $rutas+= [$ruta->id => $ruta->origen.'-'.$ruta -> destino];
+        }
+
+        $naves = ['' => ''];
+        foreach (Nave::all() as $nave) {
+            $naves += [$nave->id => $nave->nombre.'-'.$nave -> cap_personas.'-'.$nave -> cap_rutas];
+        }
+
+        return view('admin.itinerario.edit', compact('itinerario', 'naves', 'rutas'));
     }
 
     /**

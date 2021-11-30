@@ -7,7 +7,16 @@
 @stop
 
 @section('content')
-    <p>Editar</p>
+<div class="card">
+    <div class="card-body">
+        {!! Form::model($cajero, ['route' => ['admin.cajeros.update', $cajero], 'method' => 'put']) !!}
+
+        @include('admin.cajero.partials.form')
+
+        {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::close() !!}
+    </div>
+</div>
 @stop
 
 @section('css')

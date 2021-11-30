@@ -52,22 +52,3 @@
 {!! Form::hidden('cant_pasajeros', 0) !!}
 {!! Form::hidden('cant_carga', 0) !!}
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-    $(function() {
-        $('#fecha_hora_salida').on('click', function() {
-            var value = $(this).val();
-            if (value == "") {
-                $(this).val("01/01/0000 00:00:00 am");
-            }
-        });
-        $('#fecha_hora_llegada').on('click', function() {
-                var value = $(this).val();
-                if (value == "")) {
-                $(this).val(new Date().now());
-                }
-            }
-        });
-    });
-</script>

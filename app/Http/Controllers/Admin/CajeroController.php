@@ -72,9 +72,9 @@ class CajeroController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $cajero)
     {
-        //
+        return view('admin.cajero.edit', compact('cajero'));
     }
 
     /**
