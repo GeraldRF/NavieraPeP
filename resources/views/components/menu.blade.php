@@ -1,6 +1,6 @@
     <header>
         <nav class="navbar navbar-expand-lg">
-            <img src="imagenes/Logo.png" class="logo">
+            <img src="http://{{$_SERVER['HTTP_HOST']}}/imagenes/Logo.png" class="logo">
 
             <div class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
                 aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"

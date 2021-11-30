@@ -29,6 +29,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('ver/{id}', [HomeController
 Route::middleware(['auth:sanctum', 'verified'])->get('mis-reservas', [ReservaController::class, "reservas"])->name('mis-reservas');
 Route::middleware(['auth:sanctum', 'verified'])->get('mis-compras', [VentaController::class, "compras"])->name('mis-compras');
 
+Route::resource('ventas', VentaController::class)->names('ventas');
+Route::resource('reservas', ReservaController::class)->names('reservas');
+
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('Home.index');
 // })->name('Home.index');
