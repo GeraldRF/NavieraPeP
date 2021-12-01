@@ -184,5 +184,7 @@ class ReservaController extends Controller
     {
         $reserva = Reserva::find($request['id']);
         $reserva -> update(['cancelado'=>1]);
+
+        return redirect()->route('mis-reservas');
     }
 }
