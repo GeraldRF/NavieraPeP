@@ -182,5 +182,7 @@ class ReservaController extends Controller
 
     public function pagar(Request $request)
     {
+
+        
     }
 }
