@@ -35,6 +35,7 @@ class VentaController extends Controller
             $ruta = Ruta::find($itinerario->ruta_id);
 
             $compra = [
+                'id'=>$venta->id,
                 'origen' => $ruta->origen,
                 'destino' => $ruta->destino,
                 'tipo' => $venta->tipo,
@@ -130,7 +131,8 @@ class VentaController extends Controller
     }
 
     public function imprimir(Request $compra){
-        return "imprimir";
+
+        return view('venta.imprimir', compact('compra'));
     }
 
     /**

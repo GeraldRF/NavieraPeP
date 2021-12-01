@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="min-height: 80%">
         @if (session('success'))
             <div class="alert alert-success">
                 <strong>{{ session('success') }}</strong>
@@ -51,12 +51,10 @@
                                 <td>{{ $compra['descripcion'] }}</td>
                                 <td width="10px">
 
+                                    {!! Form::open(['route' => ['imprimir-v', $compra]]) !!}
+                                    {!! Form::submit('Imprimir', ['class'=>'btn btn-primary btn-sm']) !!}
+                                    {!! Form::close() !!}
 
-                                    <form action="{{ route('imprimir-v', $compra) }}" method="POST">
-                                        @csrf
-                                        @method('post')
-                                        <button class="btn btn-primary btn-sm" type="submit">Imprimir</button>
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach

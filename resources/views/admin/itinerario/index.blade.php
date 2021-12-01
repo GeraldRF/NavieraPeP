@@ -7,63 +7,74 @@
 @stop
 
 @section('content')
-@if (session('success'))
-<div class="alert alert-success">
-    <strong>{{ session('success') }}</strong>
-</div>
-@endif
+    @if (session('success'))
+        <div class="alert alert-success">
+            <strong>{{ session('success') }}</strong>
+        </div>
+    @endif
 
-<div class="card">
-    <div class="card-header">
-        <a class="btn btn-primary" href="{{ route('admin.itinerarios.create') }}">Agregar</a>
+    <div class="card">
+        <div class="card-header">
+            <a class="btn btn-primary" href="{{ route('admin.itinerarios.create') }}">Agregar</a>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Fecha y hora de salida</th>
+                        <th>Fecha y hora de llegada</th>
+                        <th>Id de ruta</th>
+                        <th>Id de nave</th>
+                        <th>Precio</th>
+                        <th>Precio por kilo</th>
+                        <th>Pasajes vendidos</th>
+                        <th>Carga vendida</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($itinerarios as $itinerario)
+                        <tr>
+                            <td>{{ $itinerario->id }}</td>
+                            <td>{{ $itinerario->fecha_hora_salida }}</td>
+                            <td>{{ $itinerario->fecha_hora_llegada }}</td>
+                            <td>{{ $itinerario->ruta_id }}-
+                                @foreach ($rutas as $ruta)
+                                    @if ($ruta->id == $itinerario->ruta_id)
+                                        ({{ $ruta->origen . ' - ' . $ruta->destino }})
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>{{ $itinerario->nave_id }}-
+                                @foreach ($naves as $nave)
+                                    @if ($nave->id == $itinerario->nave_id)
+                                        ({{ $nave->nombre }})
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>{{$itinerario->precio}}</td>
+                            <td>{{$itinerario->precio_kilo}}</td>
+                            <td>{{ $itinerario->cant_pasajeros }}</td>
+                            <td>{{ $itinerario->cant_carga }}</td>
+
+                            <td width="10px">
+                                <a class="btn btn-warning btn-sm"
+                                    href="{{ route('admin.itinerarios.edit', $itinerario) }}">Editar</a>
+                            </td>
+                            <td width="10px">
+                                <form action="{{ route('admin.itinerarios.destroy', $itinerario) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div class="card-body">
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Fecha y hora de salida</th>
-            <th>Fecha y hora de llegada</th>
-            <th>Id de ruta</th>
-            <th>Id de nave</th>
-            <th>Precio</th>
-            <th>Precio por kilo</th>
-            <th>Pasajes vendidos</th>
-            <th>Carga vendida</th>
-            <th colspan="2"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($itinerarios as $itinerario)
-            <tr>
-                <td>{{ $itinerario->id }}</td>
-                <td>{{ $itinerario->fecha_hora_salida }}</td>
-                <td>{{ $itinerario->fecha_hora_llegada }}</td>
-                <td>{{ $itinerario->ruta_id }}- @foreach ($rutas as $ruta)
-                    @if ($ruta->id == $itinerario->ruta_id) 
-                       ({{ $ruta->origen." - ".$ruta->destino }})
-                    @endif
-                @endforeach </td>
-                <td>{{ $itinerario->nave_id }}-@foreach ($naves as $nave)
-                    @if ($nave->id == $itinerario->nave_id)
-                       ({{ $nave->nombre }})
-                    @endif
-                <td>{{ $itinerario->cant_pasajeros }}</td>
-                <td>{{ $itinerario->cant_carga }}</td>
-                <td width="10px"><a class="btn btn-warning btn-sm"
-                        href="{{ route('admin.itinerarios.edit', $itinerario) }}">Editar</a></td>
-                <td width="10px">
-                    <form action="{{ route('admin.itinerarios.destroy', $itinerario) }}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-</div>
-</div>
 @stop

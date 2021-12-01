@@ -32,7 +32,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('mis-compras', [VentaContro
 Route::middleware(['auth:sanctum', 'verified'])->post('checkout-v', [VentaController::class, 'checkout'])->name('checkout-v');
 Route::middleware(['auth:sanctum', 'verified'])->post('checkout-r', [ReservaController::class, 'checkout'])->name('checkout-r');
 Route::middleware(['auth:sanctum', 'verified'])->post('imprimir-v', [VentaController::class, 'imprimir'])->name('imprimir-v');
-Route::middleware(['auth:sanctum', 'verified'])->post('imprimir-r', [ReservaController::class, 'imprimir'])->name('imprimir-r');
 Route::middleware(['auth:sanctum', 'verified'])->post('pagar', [ReservaController::class, 'pagar'])->name('pagar');
 Route::middleware(['auth:sanctum', 'verified'])->post('renunciar', [ReservaController::class, 'renunciar'])->name('renunciar');
 

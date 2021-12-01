@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="min-height: 80%">
     @if (session('success'))
         <div class="alert alert-success">
             <strong>{{ session('success') }}</strong>
@@ -29,7 +29,7 @@
                         <th>Cantidad</th>
                         <th>Total</th>
                         <th>Descripcion</th>
-                        <th colspan="3"></th>
+                        <th colspan="2"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,12 +63,7 @@
                                     <button class="btn btn-success btn-sm" type="submit">Pagar</button>
                                 </form>
                             </td>
-                            <td width="10px">
-                                <form action="{{ route('imprimir-r', $reserva) }}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-primary btn-sm" type="submit">Imprimir</button>
-                                </form>
-                            </td>
+        
                         </tr>
                     @endforeach
                 </tbody>

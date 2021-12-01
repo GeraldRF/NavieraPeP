@@ -31,6 +31,7 @@ class ReservaController extends Controller
             $ruta = Ruta::find($itinerario->ruta_id);
 
             $reserva = [
+                'id'=>$reserva->id,
                 'origen' => $ruta->origen,
                 'destino' => $ruta->destino,
                 'tipo' => $reserva->tipo,
