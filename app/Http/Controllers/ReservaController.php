@@ -8,6 +8,7 @@ use App\Models\Itinerario;
 use App\Models\Nave;
 use App\Models\Ruta;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Macros\ViewMacros;
 
 class ReservaController extends Controller
 {
@@ -21,7 +22,8 @@ class ReservaController extends Controller
         //
     }
 
-    public function reservas(){
+    public function reservas()
+    {
         $reserves = Reserva::all()->where('user_id', Auth::user()->id);
         $reservas = [];
 
@@ -31,7 +33,8 @@ class ReservaController extends Controller
             $ruta = Ruta::find($itinerario->ruta_id);
 
             $reserva = [
-                'id'=>$reserva->id,
+                'id' => $reserva->id,
+                'itinerario_id' => $itinerario->id,
                 'origen' => $ruta->origen,
                 'destino' => $ruta->destino,
                 'tipo' => $reserva->tipo,
@@ -47,8 +50,6 @@ class ReservaController extends Controller
         }
 
         return view('reserva.mis_reservas', compact('reservas'));
-        
-    
     }
 
     /**
@@ -69,7 +70,7 @@ class ReservaController extends Controller
         $itinerario = Itinerario::find($request->itinerario_id);
         $nave = Nave::find($itinerario->nave_id);
 
-        if ($request->cantidad >=1 && $request->cantidad <= ($request->tipo==0 ? $nave->cap_pasajeros - $itinerario->cant_pasajeros  : $nave->cap_carga - $itinerario->cant_carga)) {
+        if ($request->cantidad >= 1 && $request->cantidad <= ($request->tipo == 0 ? $nave->cap_pasajeros - $itinerario->cant_pasajeros  : $nave->cap_carga - $itinerario->cant_carga)) {
 
             $ruta = Ruta::find($itinerario->ruta_id);
 
@@ -87,14 +88,14 @@ class ReservaController extends Controller
                 'total' => $total,
                 'fecha_reserva' => date('Y-m-d H:i:s'),
                 'user_id' => Auth::user()->id,
-                'descripcion' => $request->descripcion, 
-                'fecha_salida'=>$itinerario->fecha_hora_salida
+                'descripcion' => $request->descripcion,
+                'fecha_salida' => $itinerario->fecha_hora_salida
             ];
 
             return view('reserva.checkout', compact('bill', 'nave', 'ruta'));
         } else {
-            $tipo = $request->tipo==0 ? 'pasajes' : 'kilos';
-            return redirect() -> route('ver',$itinerario->id)->with(['success'=>'La cantidad de '.$tipo.' ingresada no esta en el rango disponible']);
+            $tipo = $request->tipo == 0 ? 'pasajes' : 'kilos';
+            return redirect()->route('ver', $itinerario->id)->with(['success' => 'La cantidad de ' . $tipo . ' ingresada no esta en el rango disponible']);
         }
     }
 
@@ -161,12 +162,25 @@ class ReservaController extends Controller
      */
     public function destroy(Reserva $reserva)
     {
-        //
     }
 
-    public function renunciar(){
+    public function renunciar(Request $request)
+    {
+        $reserva = Reserva::find($request['id']);
 
+        $reserva->delete();
+
+        $itinerario = Itinerario::find($request->itinerario_id);
+        if ($request['tipo'] == 0) {
+            $itinerario->update(['cant_pasajeros' => $itinerario->cant_pasajeros - $request['cantidad']]);
+        }else{
+            $itinerario->update(['cant_carga' => $itinerario->cant_carga - $request['cantidad']]);
+        }
+
+        return redirect()->route('mis-reservas');
     }
 
-    public function pagar(){}
+    public function pagar(Request $request)
+    {
+    }
 }
