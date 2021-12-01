@@ -28,6 +28,7 @@
             <th>Id de ruta</th>
             <th>Id de nave</th>
             <th>Precio</th>
+            <th>Precio por kilo</th>
             <th>Pasajes vendidos</th>
             <th>Carga vendida</th>
             <th colspan="2"></th>
@@ -50,6 +51,7 @@
                     @endif
                 @endforeach </td>
                 <td>{{ $itinerario->precio }}</td>
+                <td>{{ $itinerario->precio_kilo }}</td>
                 <td>{{ $itinerario->cant_pasajeros }}</td>
                 <td>{{ $itinerario->cant_carga }}</td>
                 <td width="10px"><a class="btn btn-warning btn-sm"

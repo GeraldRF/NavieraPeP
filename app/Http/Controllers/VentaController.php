@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Itinerario;
 use App\Models\Venta;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Ruta;
+use App\Models\Nave;
 
 class VentaController extends Controller
 {
@@ -19,10 +22,11 @@ class VentaController extends Controller
         //
     }
 
-    public function ventas(){
-        
-        $compras = Venta::all()->where('user_id', Auth::user()->id);    
-       
+    public function compras()
+    {
+
+        $compras = Venta::all()->where('user_id', Auth::user()->id);
+
 
         return view('venta.mis_compras', compact('compras'));
     }
@@ -34,9 +38,39 @@ class VentaController extends Controller
      */
     public function create()
     {
-        
-        return view('venta.checkout', compact(''));
     }
+
+    public function checkout(Request $request)
+    {
+        $request->validate([
+            'cantidad' => 'required',
+        ]);
+
+        $itinerario = Itinerario::find($request->itinerario_id);
+        $nave = Nave::find($itinerario->nave_id);
+        $ruta = Ruta::find($itinerario->ruta_id);
+
+        $total = 0;
+        if($request->tipo == 0){
+            $total = $request->cantidad * $itinerario->precio;
+        }
+        else{
+            $total = $request->cantidad * $itinerario->precio_kilo;
+        }
+
+        $bill = [
+            'itinerario_id' => $itinerario->id,
+            'tipo' => $request->tipo,
+            'cantidad' => $request->cantidad,
+            'total' => $total,
+            'fecha_venta' => date('Y-m-d'),
+            'user_id' => Auth::user()->id,
+            'descripcion' => $request->descripcion
+        ];
+
+        return view('venta.checkout', compact('bill', 'nave', 'ruta'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,8 +81,8 @@ class VentaController extends Controller
     public function store(Request $request)
     {
         Venta::create($request->all());
-        
-        return redirect() -> route('mis-compras')->with(['success'=>'Su compra fue realizada con exito']);
+
+        return redirect()->route('mis-compras')->with(['success' => 'Su compra fue realizada con exito']);
     }
 
     /**

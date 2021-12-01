@@ -79,15 +79,27 @@
                                         style="list-style: none; padding: 5px 15px 0 15px; display:flex; flex-direction: column; justify-content: center; gap:10px;">
 
                                         <div>
-                                            {!! Form::open(['route' => 'ventas.']) !!}
+                                            {!! Form::open(['route' => 'checkout-v', 'style'=>'display: flex; flex-direction: column; gap:10px']) !!}
                                             {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a comprar']) !!}
+                                            @error('cantidad')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            {!! Form::hidden('itinerario_id', $itinerario->id) !!}
+                                            {!! Form::hidden('tipo', 0) !!}
+                                            {!! Form::hidden('descripcion', null) !!}
                                             {!! Form::submit('Comprar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div>O</div>
                                         <div id="reservaPasaje">
-                                            {!! Form::open(['route' => 'reservas.index']) !!}
+                                            {!! Form::open(['route' => 'checkout-r', 'style'=>'display: flex; flex-direction: column; gap:10px']) !!}
                                             {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a reservar']) !!}
+                                            @error('cantidad')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            {!! Form::hidden('itinerario_id', $itinerario->id) !!}
+                                            {!! Form::hidden('tipo', 0) !!}
+                                            {!! Form::hidden('descripcion', null) !!}
                                             {!! Form::submit('Reservar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
                                         </div>
@@ -106,7 +118,7 @@
                             <div style="min-width: 250px; min-height: 250px;">
                                 <div id="carga_img" style="display: block">
 
-                                    
+
                                     <img src="/imagenes/carga.png" alt="carga.png"
                                         style="width: 220px; height: 220px; padding:0 10px 0 10px;">
                                 </div>
@@ -115,21 +127,38 @@
                                         style="list-style: none; padding: 5px 15px 0 15px; display:flex; flex-direction: column; justify-content: center; gap:10px;">
 
                                         <div>
-                                            {!! Form::open(['route' => 'ventas.index']) !!}
+                                            {!! Form::open(['route' => 'checkout-v', 'style'=>'display: flex; flex-direction: column; gap:10px']) !!}
                                             <div style="display: flex; flex-direction: row; align-items: baseline; gap:5px">
                                                 {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a comprar']) !!}<h6>KG</h6>
                                             </div>
-
+                                            @error('cantidad')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            {!! Form::hidden('itinerario_id', $itinerario->id) !!}
+                                            {!! Form::hidden('tipo', 1) !!}
+                                            {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Ingrese una descripcion sobre carga', 'style' => 'height:70px;']) !!}
+                                            @error('descripcion')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             {!! Form::submit('Comprar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
                                         </div>
                                         <div>O</div>
                                         <div id="reservaCarga">
 
-                                            {!! Form::open(['route' => 'reservas.index']) !!}
+                                            {!! Form::open(['route' => 'checkout-r', 'style'=>'display: flex; flex-direction: column; gap:10px']) !!}
                                             <div style="display: flex; flex-direction: row; align-items: baseline; gap:5px">
                                                 {!! Form::text('cantidad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la cantidad a reservar']) !!}<h6>KG</h6>
                                             </div>
+                                            @error('cantidad')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                            {!! Form::hidden('itinerario_id', $itinerario->id) !!}
+                                            {!! Form::hidden('tipo', 1) !!}
+                                            {!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Ingrese una descripcion sobre carga', 'style' => 'height:70px;']) !!}
+                                            @error('descripcion')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             {!! Form::submit('Reservar', ['class' => 'btn btn-primary']) !!}
                                             {!! Form::close() !!}
 

@@ -48,6 +48,15 @@
     @enderror
 
 </div>
+<div class="form-group">
+    {!! Form::label('precio_kilo', 'Precio por kilo de carga') !!}
+    {!! Form::text('precio_kilo', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el precio por kilo']) !!}
+
+    @error('precio_kilo')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
+</div>
 
 {!! Form::hidden('cant_pasajeros', 0) !!}
 {!! Form::hidden('cant_carga', 0) !!}

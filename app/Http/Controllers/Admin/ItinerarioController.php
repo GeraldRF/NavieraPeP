@@ -111,7 +111,8 @@ class ItinerarioController extends Controller
             'fecha_hora_salida' => ['required', 'regex:/([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) (0[1-9]|1[0-9]|2[0-4]):(0[0-9]|[1-5][0-9])(:(0[1-9]|[1-5][0-9])|)/'],
             'ruta_id' => ['required', 'integer'],
             'nave_id' => ['required','integer'],
-            'precio' => ['required','integer']
+            'precio' => ['required','integer'],
+            'precio_kilo' => ['required','integer']
         ]);
 
         $itinerario -> update($request -> all());

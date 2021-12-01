@@ -22,6 +22,7 @@ class CreateItinerariosTable extends Migration
             $table->foreignId('nave_id')->references('id')->on('naves')->onDelete('cascade');
 
             $table->double('precio');
+            $table->double('precio_kilo');
 
             $table->integer('cant_pasajeros');
             $table->integer('cant_carga');
