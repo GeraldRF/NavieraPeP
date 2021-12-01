@@ -1,7 +1,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
-    <title>NavieraPeP</title>
+    <title>Informe_estadisticas_{{date('Y-m-d')}}_{{date('h:i:s')}}</title>
 
     <link rel="stylesheet" href="{{ URL::asset('/css/Normalize.css') }}">
     <link href="{{ URL::asset('/css/menu.css') }}" rel="stylesheet">
