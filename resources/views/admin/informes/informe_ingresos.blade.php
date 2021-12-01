@@ -1,7 +1,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="imagenes/favicon.png">
-    <title>Informe_ingresos_{{date('Y-m-d')}}_{{date('h:i:s')}}</title>
+    <title>Informe_ingresos_{{ date('Y-m-d') }}_{{ date('h:i:s') }}</title>
 
     <link rel="stylesheet" href="{{ URL::asset('/css/Normalize.css') }}">
     <link href="{{ URL::asset('/css/menu.css') }}" rel="stylesheet">
@@ -25,68 +25,125 @@
         <img src="/imagenes/Logo-sesion.png" style="width: 440; height: 300;" alt="logo">
     </div>
 
+    <?php $totalTodo = 0; ?>
+
+
     <div>
 
-        <h3><strong>Trafico en cuanto a naves</strong></h3>
+        <h3><strong>Ventas que se han realizado</strong></h3>
 
-        <p>Se hara un recuento de {{ count($naves) }} naves y se mostrara el trafico por ruta.</p>
+        <p>Se hara un recuento de {{ count($ventas) }} ventas diferentes y se mostrara que se vendio de
+            cada una.</p>
 
-        @foreach ($naves as $nave)
+        @foreach ($ventas as $venta)
+
             <br>
-            <h4>{{ $nave->nombre }}</h4>
-
-            <table style="gap:15px">
+            <h3>Venta #{{ $venta->id }}</h3>
+            <table>
                 <tr>
-                    <td>Capacidad de pasajeros:</td>
-                    <td>{{ $nave->cap_pasajeros }}</td>
+                    <td>Tipo:</td>
+                    <td>
+                        @if ($venta->tipo == 0)
+                            Pasaje
+                        @else
+                            Carga
+                        @endif
+                    </td>
                 </tr>
                 <tr>
-                    <td>Capacidad de carga:</td>
-                    <td>{{ $nave->cap_carga }}</td>
+                    <td>Cantidad de espacios: </td>
+                    <td>{{ $venta->cantidad }}</td>
                 </tr>
+                <tr>
+                    <td>Total:</td>
+                    <td>{{ $venta->total }} <?php $totalTodo += $venta->total; ?> </td>
+                </tr>
+                <tr>
+                    <td>Fecha de venta:</td>
+                    <td>{{ $venta->fecha_venta }}</td>
+                </tr>
+                @if ($venta->tipo == 1)
+                    <tr>
+                        <td>Descripcion:</td>
+                        <td>{{ $venta->descripcion }}</td>
+                    </tr>
+                @endif
             </table>
             <br>
-            <p>De las cantidades anteriores por cada ruta se ocupo lo siguiente:</p>
 
             @foreach ($itinerarios as $itinerario)
-                @if ($itinerario->nave_id == $nave->id)
+
+                @if ($itinerario->id == $venta->itinerario_id)
+
+
 
                     @foreach ($rutas as $ruta)
+
                         @if ($ruta->id == $itinerario->ruta_id)
-                            <br>
-                            <h6>{{ $ruta->origen }} - {{ $ruta->destino }}</h6>
-
-                            <table style="gap:15px">
-                                <tr>
-                                    <td>Espacios de pasajeros:</td>
-                                    <td>{{ $itinerario->cant_pasajeros }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Espacios de carga:</td>
-                                    <td>{{ $itinerario->cant_carga }}</td>
-                                </tr>
-                            </table>
-
-                            <br>
-                            @if (date('Y-m-d H:i:S') < $itinerario->fecha_hora_salida)
-                                <p>Esta nave <strong>no</strong> ha sarpado sino hasta {{ $itinerario->fecha_hora_salida }}</p>
-                            @else
-                                <p>Esta nave <strong>ya</strong> sarpo el {{ $itinerario->fecha_hora_salida }}</p>
-                            @endif
-
+                            <h5> Esta venta se realizo en la ruta {{ $ruta->origen }} - {{ $ruta->destino }}</h5>
                         @endif
+
+                    @endforeach
+                    @foreach ($naves as $nave)
+
+                        @if ($nave->id == $itinerario->nave_id)
+                            <h5>La nave {{ $nave->nombre }} es la encargada de esta ruta</h5>
+                        @endif
+
                     @endforeach
 
+                    @if (date('Y-m-d H:i:S') < $itinerario->fecha_hora_salida)
+                        <h5>Esta nave sarpa el {{ $itinerario->fecha_hora_salida }}
+                        </h5>
+                    @else
+                        <h5>Esta nave ya sarpo el {{ $itinerario->fecha_hora_salida }}</h5>
+                    @endif
                 @endif
-
-
-
 
             @endforeach
 
 
-
         @endforeach
+        <br>
+        <br>
+        <h3>Totales</h3>
+        <table>
+
+            @foreach ($itinerarios as $itinerario)
+                <?php $total = 0; ?>
+                <tr style="border-bottom: 0.5px solid; margin-bottom:5px">
+                    <td>
+                        Total de viaje con ruta
+                        @foreach ($rutas as $ruta)
+                            @if ($ruta->id == $itinerario->ruta_id)
+                                {{ $ruta->origen }} - {{ $ruta->destino }}
+                            @endif
+                        @endforeach
+                        con fecha {{ $itinerario->fecha_hora_salida }}
+                        @foreach ($naves as $nave)
+                            @if ($nave->id == $itinerario->nave_id)
+                                hecha por la nave {{ $nave->nombre }}
+                            @endif
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach ($ventas as $venta)
+                            @if ($venta->itinerario_id == $itinerario->id)
+
+                                <?php $total += $venta->total; ?>
+
+                            @endif
+                        @endforeach
+                        {{ $total }}
+                    </td>
+                </tr>
+            @endforeach
+            <tr>
+                <td>Total de todos los viajes</td>
+                <td>{{ $totalTodo }}</td>
+            </tr>
+        </table>
 
     </div>
 
