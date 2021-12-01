@@ -257,13 +257,13 @@ return [
         ['header' => 'GENERACION DE INFORMES'],
         [
             'text' => 'Informe de estadisticas',
+            'route'  => 'generar-informe-estadisticas',
             'icon' => 'fas fa-paste',
-            'url'  => '#',
         ],
         [
             'text' => 'Informe de ingresos',
+            'route'  => 'generar-informe-ingresos',
             'icon' => 'fas fa-file-invoice-dollar',
-            'url'  => '#',
         ],
     ],
 

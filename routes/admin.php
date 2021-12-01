@@ -16,4 +16,5 @@ Route::resource('itinerarios', ItinerarioController::class, ['parameters' => [
     'itinerarios' => 'itinerario'
 ]])->names('admin.itinerarios');
 Route::resource('cajeros', CajeroController::class)->names('admin.cajeros');
-Route::get('generar-informe-estadistica', [HomeController::class, 'informe_estadistica']);
+Route::get('generar-informe-estadisticas', [HomeController::class, 'informe_estadistica'])->name('generar-informe-estadisticas');
+Route::get('generar-informe-ingresos', [HomeController::class, 'informe_ingresos'])->name('generar-informe-ingresos');
