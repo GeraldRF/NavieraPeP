@@ -182,7 +182,7 @@ class ReservaController extends Controller
 
     public function pagar(Request $request)
     {
-
-        
+        $reserva = Reserva::find($request['id']);
+        $reserva -> update(['cancelado'=>1]);
     }
 }
