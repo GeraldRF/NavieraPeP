@@ -25,8 +25,28 @@ class VentaController extends Controller
     public function compras()
     {
 
-        $compras = Venta::all()->where('user_id', Auth::user()->id);
+        $ventas = Venta::all()->where('user_id', Auth::user()->id);
 
+        $compras = [];
+
+        foreach ($ventas as $venta) {
+
+            $itinerario = Itinerario::find($venta->itinerario_id);
+            $ruta = Ruta::find($itinerario->ruta_id);
+
+            $compra = [
+                'origen' => $ruta->origen,
+                'destino' => $ruta->destino,
+                'tipo' => $venta->tipo,
+                'fecha_salida' => $itinerario->fecha_hora_salida,
+                'fecha_compra' => $venta->fecha_venta,
+                'cantidad' => $venta->cantidad,
+                'total' => $venta->total,
+                'descripcion' => $venta->descripcion
+            ];
+
+            $compras = array_merge($compras, [$compra]);
+        }
 
         return view('venta.mis_compras', compact('compras'));
     }
@@ -45,30 +65,35 @@ class VentaController extends Controller
         $request->validate([
             'cantidad' => 'required',
         ]);
-
         $itinerario = Itinerario::find($request->itinerario_id);
         $nave = Nave::find($itinerario->nave_id);
-        $ruta = Ruta::find($itinerario->ruta_id);
 
-        $total = 0;
-        if($request->tipo == 0){
-            $total = $request->cantidad * $itinerario->precio;
+        if ($request->cantidad >= 1 && $request->cantidad <= ($request->tipo == 0 ? $nave->cap_pasajeros - $itinerario->cant_pasajeros  : $nave->cap_carga - $itinerario->cant_carga)) {
+
+            $ruta = Ruta::find($itinerario->ruta_id);
+
+            $total = 0;
+            if ($request->tipo == 0) {
+                $total = $request->cantidad * $itinerario->precio;
+            } else {
+                $total = $request->cantidad * $itinerario->precio_kilo;
+            }
+
+            $bill = [
+                'itinerario_id' => $itinerario->id,
+                'tipo' => $request->tipo,
+                'cantidad' => $request->cantidad,
+                'total' => $total,
+                'fecha_venta' => date('Y-m-d H:i:s'),
+                'user_id' => Auth::user()->id,
+                'descripcion' => $request->descripcion
+            ];
+
+            return view('venta.checkout', compact('bill', 'nave', 'ruta'));
+        } else {
+            $tipo = $request->tipo == 0 ? 'pasajes' : 'kilos';
+            return redirect()->route('ver', $itinerario->id)->with(['success' => 'La cantidad de ' . $tipo . ' ingresada no esta en el rango disponible']);
         }
-        else{
-            $total = $request->cantidad * $itinerario->precio_kilo;
-        }
-
-        $bill = [
-            'itinerario_id' => $itinerario->id,
-            'tipo' => $request->tipo,
-            'cantidad' => $request->cantidad,
-            'total' => $total,
-            'fecha_venta' => date('Y-m-d'),
-            'user_id' => Auth::user()->id,
-            'descripcion' => $request->descripcion
-        ];
-
-        return view('venta.checkout', compact('bill', 'nave', 'ruta'));
     }
 
 
@@ -82,6 +107,14 @@ class VentaController extends Controller
     {
         Venta::create($request->all());
 
+        $itinerario = Itinerario::find($request->itinerario_id);
+
+        if ($request->tipo == 0) {
+            $itinerario->update(['cant_pasajeros' => ($itinerario->cant_pasajeros + $request->cantidad)]);
+        } else {
+            $itinerario->update(['cant_carga' => ($itinerario->cant_carga + $request->cantidad)]);
+        }
+
         return redirect()->route('mis-compras')->with(['success' => 'Su compra fue realizada con exito']);
     }
 
@@ -94,6 +127,10 @@ class VentaController extends Controller
     public function show(Venta $venta)
     {
         //
+    }
+
+    public function imprimir(Request $compra){
+        return "imprimir";
     }
 
     /**

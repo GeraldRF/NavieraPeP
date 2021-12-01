@@ -49,9 +49,6 @@
                     @if ($nave->id == $itinerario->nave_id)
                        ({{ $nave->nombre }})
                     @endif
-                @endforeach </td>
-                <td>{{ $itinerario->precio }}</td>
-                <td>{{ $itinerario->precio_kilo }}</td>
                 <td>{{ $itinerario->cant_pasajeros }}</td>
                 <td>{{ $itinerario->cant_carga }}</td>
                 <td width="10px"><a class="btn btn-warning btn-sm"
